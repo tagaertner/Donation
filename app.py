@@ -1,6 +1,7 @@
 from donation_pkg.homepage import show_homepage
+from donation_pkg.user import login
 
-database = {"admin:","password123"}
+database = {"admin":"password123",}
 donations =[]
 authorized_user = ""
 
@@ -11,13 +12,21 @@ def show_homepage():
     print(f"Logged in as: {authorized_user}\n")
 
 def prompt_option ():
-
+  global authorized_user
 #task 3 Handle user input
   while True:
     option = input(f"Choose an option:\n")
     
     if option == "1":
-      print("TODO: write login functioantly")
+      username = input("Please enter your user name\n")
+      password = input("Please enter your password\n")
+      
+      authorized_user = login(database, username, password)
+      
+      if authorized_user:
+        print("login successful")
+      else:
+        print("User not found. Pleas register")
     elif option == "2":
       print("TODO: Write Register Functionaltiy")
     elif option == "3":
