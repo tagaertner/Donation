@@ -20,13 +20,13 @@ def register(database, username):
     return""
   else:
     print(f"Username {username} is registed and you cannot change it. ")
-    return""
+    return username
   
 #task6: define function and execute logic and set vaule that will show how much is donated
 def donate(username):
     donation_amt = float(input("Enter amount to donate: "))
     donation_string = f"{username} donated ${donation_amt}"
-    print(f"Thank you, {username}!")
+    print(f"Thank you for your donation, {username}!")
     return donation_string
    
      

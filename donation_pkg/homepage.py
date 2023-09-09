@@ -11,6 +11,13 @@ def show_homepage():
     print("|               5. Exit                   |")
     print("------------------------------------------")
 
-  
+def show_donations(donations):
+  print("\n -- All Donations --")
+  if not donations:
+    print("No donations so far..")
+  else:
+    for donation in donations:
+      print(donation)
+      
 
 show_homepage()

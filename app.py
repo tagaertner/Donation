@@ -1,4 +1,4 @@
-from donation_pkg.homepage import show_homepage
+from donation_pkg.homepage import show_homepage, show_donations
 from donation_pkg.user import login, register, donate
 
 database = {"admin":"password123",}
@@ -35,13 +35,28 @@ def prompt_option ():
     elif option == "2":      
         username = input("Enter your user name NOW\n").lower()
         password = input("Enter your password NOW\n")
-        authorized_user = register(database, username)
-        if authorized_user != "":
-          database.add_user(username, password)
+        if username in database:
+          print("Username already exist. Please choose a different username")
+        else:
+          authorized_user = register(database, username)
+          if authorized_user != "":
+            database[username] = password
+            print("Registration sucessfull, you can now login")
+          #taks 6 donation functionality,user cannot donate if not loggin in, 
     elif option == "3":
-      print("TODO: Write Donate functonality")
+      if authorized_user == "":
+        print("You are not logged in.")
+      else:
+        donation_string = donate(authorized_user)
+        donations.append(donation_string)
     elif option == "4":
-      print("TODO: write Show Donations Functionailty")
+        donation = show_donations(donations)
+        if not donations:
+          print("Currently, there are no donations.")
+        else:
+          for donation in donations:
+            print(donation)
+            
     elif option == "5":
       print("Goodbye..end program")
       break
